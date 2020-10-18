@@ -1,6 +1,44 @@
 export class Endereco {
 
-    constructor(public logradouro: string, public numero: number, public complemento: string,
-        public bairro: string, public municipio: string, public estado: string, public cep: string) { }
+    constructor(
+        public logradouro: string, 
+        public numero: number, 
+        public complemento: string,
+        public bairro: string, 
+        public municipio: string, 
+        public estado: string, 
+        public cep: string
+    ) { }
 
+    public dados_endereco () : string {
+
+        this.validarCamposObrigatorios()
+
+        const _logradouro : string = this.logradouro + ", "
+        const _numero : string = this.numero? `${this.numero}` : "s/n"
+        const _complemento : string = this.complemento? " " + this.complemento : ""
+
+        const _bairro : string = this.bairro? this.bairro + " - " : ""
+        const _municipio = this.municipio + " - "
+        
+        const _cep : string = this.cep? `CEP:${this.cep}` : ""
+
+        return (
+`${_logradouro}${_numero}${_complemento}
+${_bairro}${_municipio}${this.estado}
+${_cep}`
+        )
+    }
+
+    public validarCamposObrigatorios(): void {
+
+        if (!this.logradouro)
+            throw new Error("O campo logradouro do endereço é obrigatório")
+
+        if (!this.municipio)
+            throw new Error("O campo município do endereço é obrigatório")
+
+        if (!this.estado)
+            throw new Error("O campo estado do endereço é obrigatório")
+    }
 }
