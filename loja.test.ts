@@ -93,7 +93,8 @@ Bai 1 - Mun 1 - E1
 CEP:11111-111 Tel (11) 1111-1111
 Obs 1
 CNPJ: 11.111.111/1111-11
-IE: 123456789`
+IE: 123456789
+`
 
 const TEXTO_ESPERADO_SEM_NUMERO_SEM_COMPLEMENTO_SEM_BAIRRO: string = `Loja 1
 Log 1, s/n
@@ -101,7 +102,17 @@ Mun 1 - E1
 CEP:11111-111 Tel (11) 1111-1111
 Obs 1
 CNPJ: 11.111.111/1111-11
-IE: 123456789`
+IE: 123456789
+`
+
+const TEXTO_ESPERADO_EXERCICIO_02_CUSTOMIZADO : string = `Titos balas
+Av. Senador rio, 23 casa
+Mangabeira - João Pessoa - PB
+CEP:58038-000 Tel (83) 8888-7777
+Praça Coqueiral
+CNPJ: 42.591.651/0797-34
+IE: 244.898.500.113
+`
 
 
 test('Loja Completa', () => {
@@ -220,18 +231,18 @@ test('Número zero, complemento e bairro vazios', () => {
 test('Exercício 2 - customizado', () => {
 
   // Defina seus próprios valores para as variáveis a seguir
-  let nome_loja = "";
-  let logradouro = "";
-  let numero = 0;
-  let complemento = "";
-  let bairro = "";
-  let municipio = "";
-  let estado = "";
-  let cep = "";
-  let telefone = "";
-  let observacao = "";
-  let cnpj = "";
-  let inscricao_estadual = "";
+  let nome_loja = "Titos balas";
+  let logradouro = "Av. Senador rio";
+  let numero = 23;
+  let complemento = "casa";
+  let bairro = "Mangabeira";
+  let municipio = "João Pessoa";
+  let estado = "PB";
+  let cep = "58038-000";
+  let telefone = "(83) 8888-7777";
+  let observacao = "Praça Coqueiral";
+  let cnpj = "42.591.651/0797-34";
+  let inscricao_estadual = "244.898.500.113";
 
   let endereco_customizado: Endereco = new Endereco(logradouro, numero,
     complemento, bairro, municipio, estado, cep);
@@ -240,7 +251,5 @@ test('Exercício 2 - customizado', () => {
     inscricao_estadual);
 
   //E atualize o texto esperado abaixo
-  expect(loja_customizada.dados_loja()).toBe(
-    `
-`);
+  expect(loja_customizada.dados_loja()).toBe(TEXTO_ESPERADO_EXERCICIO_02_CUSTOMIZADO);
 });
